@@ -6,6 +6,8 @@ public class PlayerAnimation : MonoBehaviour
 {
     // Start is called before the first frame update
     //Source: https://learn.unity.com/tutorial/controlling-animation
+    //Source: (animation controller and animation mapping) https://www.youtube.com/watch?v=vApG8aYD5aI&t=213s
+    //Source: (Animating based on user input) https://www.youtube.com/watch?v=FF6kezDQZ7s
 
     Animator anim;
 
@@ -20,7 +22,16 @@ public class PlayerAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float move = Input.GetAxis("Vertical"); //get movement input (w)
-        anim.SetFloat("Speed", move); //set float for animation controller
+        //float move = Input.GetAxis("Vertical"); //get movement input (w)
+        //anim.SetFloat("Speed", move); //set float for animation controller
+
+        if(Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d")){
+            anim.SetBool("MovementInput", true);
+        }
+
+        if(!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d")){
+            anim.SetBool("MovementInput", false);
+        }
+
     }
 }

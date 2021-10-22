@@ -8,11 +8,11 @@ public class PlayerTracker : MonoBehaviour
 
     //Source: https://learn.unity.com/tutorial/controlling-unity-camera-behaviour-2019-3#5e60f749edbc2a002071df05
     public Transform trackedObject;
-    public float maxDistance = 5;
-    public float moveSpeed = 20;
+    public float maxDistance = 7;
+    public float moveSpeed = 5;
     public float updateSpeed = 10;
     [Range(0,10)]
-    public float currentDistance = 5;
+    public float currentDistance = 7;
     private string moveAxis = "Mouse ScrollWheel";
     private GameObject ahead;
     private MeshRenderer _renderer;
