@@ -29,9 +29,20 @@ public class PlayerAnimation : MonoBehaviour
             anim.SetBool("MovementInput", true);
         }
 
+         if(Input.GetMouseButton(0)){ //left click - source: https://docs.unity3d.com/ScriptReference/Input.GetMouseButton.html
+            anim.SetBool("Attack", true);
+        }
+
+        if(!Input.GetMouseButton(0)){
+            anim.SetBool("Attack", false);
+        }
+
         if(!Input.GetKey("w") && !Input.GetKey("a") && !Input.GetKey("s") && !Input.GetKey("d")){
             anim.SetBool("MovementInput", false);
+           
         }
+
+       
 
     }
 }

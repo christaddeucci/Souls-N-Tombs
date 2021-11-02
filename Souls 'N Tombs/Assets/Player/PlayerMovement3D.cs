@@ -70,7 +70,7 @@ public class PlayerMovement3D : MonoBehaviour
             gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.normalized), 0.2f); //https://answers.unity.com/questions/803365/make-the-player-face-his-movement-direction.html
             gameObject.transform.Translate(movement * speed * Time.deltaTime, Space.World);
         } else if (Input.GetKey("s") || Input.GetKey("a") || Input.GetKey("d")){
-             characterController.Move(motion*speed*Time.deltaTime);
+            characterController.Move(motion*speed*Time.deltaTime);
         }
 
 
