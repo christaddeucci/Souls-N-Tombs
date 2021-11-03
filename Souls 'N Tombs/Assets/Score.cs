@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Score : MonoBehaviour
 {
-    // Start is called before the first frame update
+ 
 
     int _score = 0;
 
@@ -20,9 +20,9 @@ public class Score : MonoBehaviour
 
 
     public static Score Instance;
-    void Start()
-    {
-        
+
+    void Awake(){
+        Instance = this;
     }
 
     // Update is called once per frame

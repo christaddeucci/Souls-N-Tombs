@@ -26,17 +26,13 @@ public class EnemyAnimation : MonoBehaviour
     {
 
 
-        if(enemyHealth <= 0){
-            anim.SetBool("Dead", true);
-            Score.Instance.SetScore(1);
-            Destroy(Enemy);             
-            
+        if(enemyHealth >= 0){
+            enemyMovement();
             //Enemy.GetComponent<MeshCollider>.isTrigger = true;
-        }else {
-              enemyMovement();
-
         }
-        
+              
+
+      
 
 
       
@@ -48,7 +44,7 @@ public class EnemyAnimation : MonoBehaviour
     
 
     void enemyMovement(){
-        if((Vector3.Distance(Player.transform.position, Enemy.transform.position) < 10) && (Vector3.Distance(Player.transform.position, Enemy.transform.position) > 1)){//https://answers.unity.com/questions/1699266/how-do-you-check-if-a-game-object-is-in-the-radius.html
+        if((Vector3.Distance(Player.transform.position, Enemy.transform.position) < 5) && (Vector3.Distance(Player.transform.position, Enemy.transform.position) > 1)){//https://answers.unity.com/questions/1699266/how-do-you-check-if-a-game-object-is-in-the-radius.html
             anim.SetBool("MovementInput", true); //set animation of enemy
             anim.SetBool("Attack", false);
             //move enemy toward player
@@ -72,11 +68,23 @@ public class EnemyAnimation : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider){
 
-        Debug.Log(collider.gameObject.name);
+        //Debug.Log(collider.gameObject.name);
 
         if(collider.gameObject.name == "playerSword"){
-            enemyHealth -= 1;
+       
+
+            if(enemyHealth > 0){
+                enemyHealth -= 1;
+            }
+
+            if(enemyHealth == 0){
+                anim.SetBool("Dead", true);
+                Score.Instance.SetScore(1);
+                Destroy(Enemy);
+            }                 
+            
         }
+    
 
     }
     

@@ -437,10 +437,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.75
-  m_Height: 1.78
+  m_Radius: 0.84
+  m_Height: 1.58
   m_Direction: 1
-  m_Center: {x: 0, y: 0.87, z: 0}
+  m_Center: {x: 0, y: 0.96, z: 0}
 --- !u!95 &-6930851752282399327
 Animator:
   serializedVersion: 3
@@ -474,6 +474,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 3989703989949593796, guid: b0da7fe58be00f44fb1ebad80233d3a5, type: 3}
   Enemy: {fileID: 4617697705857855891}
+  _score: {fileID: 0}
+  enemyHealth: 25
 --- !u!54 &-3655015077891278777
 Rigidbody:
   m_ObjectHideFlags: 0

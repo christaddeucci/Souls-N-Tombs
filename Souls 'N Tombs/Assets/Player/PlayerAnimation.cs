@@ -13,10 +13,13 @@ public class PlayerAnimation : MonoBehaviour
     Animator anim;
     [SerializeField] int health = 0;
 
+    int score;
    
 
     [SerializeField] GameObject _gameOverText;
     [SerializeField] GameObject _gameHealth;
+
+    [SerializeField] Score _score;
 
 
 
@@ -33,6 +36,12 @@ public class PlayerAnimation : MonoBehaviour
     {
         //float move = Input.GetAxis("Vertical"); //get movement input (w)
         //anim.SetFloat("Speed", move); //set float for animation controller
+
+        score = Score.Instance.getScore();
+
+        if(score >= 10){
+            _gameOverText.GetComponent<TextMeshPro>().text = "TOMB CLEARED";
+        }
 
         if(health <= 0){
             anim.SetBool("Dead", true);
@@ -67,7 +76,7 @@ public class PlayerAnimation : MonoBehaviour
     
     private void OnTriggerEnter(Collider collider){
 
-        Debug.Log(collider.gameObject.name);
+        //Debug.Log(collider.gameObject.name);
 
         if(collider.gameObject.name == "enemySword"){
             health -= 1;

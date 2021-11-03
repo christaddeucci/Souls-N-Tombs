@@ -7,6 +7,7 @@ public class PlayerMovement3D : MonoBehaviour
     //Source: https://learn.unity.com/tutorial/controlling-unity-camerab-behaviour-2019-3#
 
     public float speed = 20f;
+    float gravity;
     private Vector3 motion;
  
 
@@ -30,7 +31,9 @@ public class PlayerMovement3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        motion = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+      
+        gravity -= 9.81f * Time.deltaTime;
+        motion = new Vector3(Input.GetAxisRaw("Horizontal"), gravity, Input.GetAxisRaw("Vertical"));
         Vector3 movement = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * motion;
         
 
@@ -47,9 +50,9 @@ public class PlayerMovement3D : MonoBehaviour
         }
 
 
-        //needs to be fixed
+        //https://answers.unity.com/questions/334708/gravity-with-character-controller.html
         if(characterController.isGrounded == false){ //solves floating issue when the player walks over an enemy
-           movement = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * motion;
+           gravity = 0;
         }    
 
 
