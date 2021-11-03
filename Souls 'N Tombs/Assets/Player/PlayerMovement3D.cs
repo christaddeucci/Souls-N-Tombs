@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement3D : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     //Source: https://learn.unity.com/tutorial/controlling-unity-camerab-behaviour-2019-3#
 
     public float speed = 20f;
     private Vector3 motion;
-    //private Rigidbody rb;
+ 
 
     private CharacterController characterController;
 
@@ -32,10 +30,7 @@ public class PlayerMovement3D : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        motion = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        //rb.velocity = motion * speed; 
-        //characterController.attachedRigidbody.velocity = motion * speed; //https://docs.unity3d.com/ScriptReference/CharacterController.html
-        //characterController.Move(motion*speed);
+        motion = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         Vector3 movement = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * motion;
         
 
@@ -46,38 +41,21 @@ public class PlayerMovement3D : MonoBehaviour
         transform.Rotate(Vector3.up, mouseX * 10f);
 
 
-
-
-        //wasd movement
-        // if(motion != Vector3.zero && Input.GetKey("w") ){ //https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
-        //     gameObject.transform.forward = motion;
-        // }
-
-        // if(motion != Vector3.zero){ //https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
-        //     gameObject.transform.forward = motion;
-        // }
-        // if(Input.GetKey("w")){
-        //     transform.position += transform.forward;
-        // } else if(Input.GetKey("s")){
-        //     transform.position -= transform.forward;
-        // }else if(Input.GetKey("a")){
-        //     transform.position -= transform.right;
-        // }else if(Input.GetKey("d")){    
-        //     transform.position += transform.right;
-        // }    
-
-        if(motion != Vector3.zero && Input.GetKey("w" ) &! Input.GetKey("s")  &! Input.GetKey("a") &! Input.GetKey("d")){
-            gameObject.transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement.normalized), 0.2f); //https://answers.unity.com/questions/803365/make-the-player-face-his-movement-direction.html
-            gameObject.transform.Translate(movement * speed * Time.deltaTime, Space.World);
-        } else if (Input.GetKey("s") || Input.GetKey("a") || Input.GetKey("d")){
-            characterController.Move(motion*speed*Time.deltaTime);
+        //WASD movement 
+        if(motion != Vector3.zero &&  (Input.GetKey("w" ) || Input.GetKey("s")  || Input.GetKey("a") || Input.GetKey("d"))){ //https://docs.unity3d.com/ScriptReference/CharacterController.Move.html
+            characterController.Move(movement*speed*Time.deltaTime);
         }
 
 
-       
+        //needs to be fixed
+        if(characterController.isGrounded == false){ //solves floating issue when the player walks over an enemy
+           movement = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * motion;
+        }    
 
-        
-     
 
     }
+    
+
+
+
 }
