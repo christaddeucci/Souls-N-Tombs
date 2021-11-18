@@ -39,9 +39,10 @@ public class PlayerMovement3D : MonoBehaviour
 
         //mouse location (aiming)
         float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
+        //float mouseY = Input.GetAxis("Mouse Y");
 
         transform.Rotate(Vector3.up, mouseX * 10f);
+        //transform.Rotate(Vector3.right, mouseY * 10f);
 
 
         //WASD movement 

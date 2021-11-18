@@ -39,7 +39,7 @@ public class PlayerAnimation : MonoBehaviour
 
         score = Score.Instance.getScore();
 
-        if(score >= 10){
+        if(score >= 7){
             _gameOverText.GetComponent<TextMeshPro>().text = "TOMB CLEARED";
         }
 
