@@ -20,7 +20,7 @@ public class EnemyAnimation : MonoBehaviour
     int randIndex;
 
     [SerializeField] Score _score;
-    [SerializeField] int enemyHealth = 0; 
+    [SerializeField] int enemyHealth; 
     
 
 

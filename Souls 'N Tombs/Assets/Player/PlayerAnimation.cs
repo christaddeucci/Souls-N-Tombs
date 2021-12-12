@@ -11,6 +11,13 @@ public class PlayerAnimation : MonoBehaviour
     //Source: (Animating based on user input) https://www.youtube.com/watch?v=FF6kezDQZ7s
 
     Animator anim;
+
+   
+
+ 
+
+
+
     
     int score;
 
@@ -40,6 +47,8 @@ public class PlayerAnimation : MonoBehaviour
         _playerDamage.GetComponent<TextMeshPro>().text = "Damage: " + Score.Instance.getPlayerDamage();
         _playerSpeed.GetComponent<TextMeshPro>().text = "Speed: " + Score.Instance.getPlayerSpeed(); 
          characterController = GetComponent<CharacterController>();
+        
+      
 
 
     }
@@ -108,6 +117,7 @@ public class PlayerAnimation : MonoBehaviour
 
         _playerDamage.GetComponent<TextMeshPro>().text = "Damage: " + Score.Instance.getPlayerDamage();
         _playerSpeed.GetComponent<TextMeshPro>().text = "Speed: " + Score.Instance.getPlayerSpeed(); 
+        //source.PlayOneShot(background, 1f);
 
     }
 
@@ -115,10 +125,11 @@ public class PlayerAnimation : MonoBehaviour
     private void OnTriggerEnter(Collider collider){
 
         //Debug.Log(collider.gameObject.name);
-
         if(collider.gameObject.name == "enemySword"){
             Score.Instance.setPlayerHealth(-2);
-            _gameHealth.GetComponent<TextMeshPro>().text = "Health: " + Score.Instance.getPlayerHealth(); 
+            _gameHealth.GetComponent<TextMeshPro>().text = "Health: " + Score.Instance.getPlayerHealth();
+            
+            
         }
 
     }
