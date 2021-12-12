@@ -13,7 +13,7 @@ public class PlayerTracker : MonoBehaviour
     [SerializeField] float moveSpeed = 5;
     [SerializeField] float updateSpeed = 20;
     [Range(0,20)]
-     float currentDistance = 3;
+    float currentDistance = 3;
     private string moveAxis = "Mouse ScrollWheel";
     private GameObject ahead;
     //private MeshRenderer _renderer;

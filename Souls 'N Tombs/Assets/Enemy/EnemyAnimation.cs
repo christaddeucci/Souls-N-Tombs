@@ -10,6 +10,15 @@ public class EnemyAnimation : MonoBehaviour
     [SerializeField] GameObject Player; //player Object
     [SerializeField] GameObject Enemy; //enemy Object
 
+   
+
+
+
+
+    //https://docs.unity3d.com/Manual/class-Random.html
+    //random class to roll buff after enemy kill
+    int randIndex;
+
     [SerializeField] Score _score;
     [SerializeField] int enemyHealth = 0; 
     
@@ -31,12 +40,6 @@ public class EnemyAnimation : MonoBehaviour
             //Enemy.GetComponent<MeshCollider>.isTrigger = true;
         }
               
-
-      
-
-
-      
-
 
     }
 
@@ -74,13 +77,36 @@ public class EnemyAnimation : MonoBehaviour
        
 
             if(enemyHealth > 0){
-                enemyHealth -= 1;
+                enemyHealth -= Score.Instance.getPlayerDamage(); //damage based on player buff
             }
 
-            if(enemyHealth == 0){
-                anim.SetBool("Dead", true);
-                Score.Instance.SetScore(1);
-                Destroy(Enemy);
+            if(enemyHealth <= 0){
+               
+                if(anim.GetBool("Dead") == false){ //on enemy death, score increased and user attributes are buffed
+                      Score.Instance.SetScore(1);
+                      anim.SetBool("Dead", true);
+                      Destroy(Enemy);
+                      randIndex = Random.Range(1,4);
+                      if(randIndex == 1){
+                        //add 10 health back
+                        Score.Instance.setPlayerHealth(10);
+                      }
+                      if (randIndex == 2){
+                        //buff damage
+                        Score.Instance.setPlayerDamage(1);
+                      }  
+                      if (randIndex == 3){
+                        //buff player speed
+                        Score.Instance.setPlayerSpeed(1f);
+
+                      }
+
+                      
+
+
+
+                } 
+                
             }                 
             
         }
